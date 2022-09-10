@@ -26,3 +26,4 @@ jobs:
     - run: npm i -f
     - run: npm run build --if-present
     - run: npm run build
+    - run: pm2 restart static-page-server-3000
