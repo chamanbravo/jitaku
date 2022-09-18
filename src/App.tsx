@@ -1,7 +1,22 @@
+import Image from './components/image'
+import Find from './components/find'
+import Categories from './components/categories'
+
 function App() {
   return (
-    <div className="flex flex-col items-center justify-center h-screen text-red-300 bg-gradient-to-br from-gray-300 via-teal-700 to-gray-800">
-      <h1 className="text-4xl font-bold">Jitaku</h1>
+    <div className="flex gap-[2rem] items-center justify-center h-screen bg-[#373E4D]">
+      <Image />
+      <div className='border-[2px] border-[#22A4AC]'>
+        <div className='p-[1rem]'>
+          <Find />
+          <div className='flex justify-between mt-[2.5rem]'>
+            <Categories />
+            <Categories />
+            <Categories />
+            <Categories />
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
