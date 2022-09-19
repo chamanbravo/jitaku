@@ -1,0 +1,23 @@
+.find{
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.find_h1{
+    color: #CAE6E8;
+    font-size: 2rem;
+    font-weight: 400;
+    width: 8ch;
+}
+
+.find_input{
+    border-radius: 8px;
+    background-color: #455169;
+    outline: none;
+    border: none;
+    color: #CAE6E8;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    width: 100%;
+}

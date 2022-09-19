@@ -1,0 +1,14 @@
+.categories-items_h1{
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #7092D7;
+}
+
+.categories-items_ul, a{
+    color: #CAE6E8;
+    font-size: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
