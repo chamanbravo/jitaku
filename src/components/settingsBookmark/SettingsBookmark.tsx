@@ -24,7 +24,7 @@ function SettingsBookmark() {
   useEffect(() => {
     const bookmark: BookmarkType[] = JSON.parse(localStorage.getItem('bookmarks') || '[]')
     setBookmarks(bookmark)
-  },[bookmarks])
+  },[])
   
   return (
     <div className='settings-bookmarks__item'>
@@ -34,7 +34,15 @@ function SettingsBookmark() {
             <Bookmark editIndex={editIndex} setEditIndex={setEditIndex} setToggle={setToggle} bookmarks={bookmarks} setBookmarks={setBookmarks}  bookmark={bookmark} />
               {
                 toggle === bookmark.id && (
-                  <BookmarkList editIndex={editIndex} setEditIndex={setEditIndex} setToggle={setToggle} bookmarks={bookmarks} setBookmarks={setBookmarks}  bookmark={bookmark}/>
+                  <div className='settings-bookmarks__lists'>
+                    {bookmark.lists.map((list, j) => {
+                      return (
+                        <div key={j} className='settings-bookmarks__list'>
+                            <BookmarkList editIndex={editIndex} setEditIndex={setEditIndex} bookmarks={bookmarks} setBookmarks={setBookmarks}  list={list}/>
+                        </div>
+                      )
+                    })}
+                  </div>
                 )
               }
           </div>

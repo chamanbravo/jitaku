@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { IoMdCreate, IoIosTrash, IoIosAdd, IoIosSave, IoIosCloseCircleOutline} from "react-icons/io"
 
 type BookmarkType = {
@@ -20,7 +21,19 @@ type BookmarkProps = {
 }
 
 function Bookmark({editIndex, setEditIndex, setToggle, bookmarks, setBookmarks, bookmark}: BookmarkProps) {
-  const delteBookmark = (id: number) => {
+  const [title, setTitle] = useState(bookmark.title)
+
+  const editBookmarkTitle = (id: number) => {
+    const newBookmarks = bookmarks.map(bookmark => {
+      if (bookmark.id === id) bookmark.title = title
+      return bookmark
+    })
+    setBookmarks(newBookmarks)
+    localStorage.setItem('bookmarks', JSON.stringify(newBookmarks))
+    setEditIndex(null)
+  }
+
+  const deleteBookmark = (id: number) => {
     const newBookmarks = bookmarks.filter(bookmark => bookmark.id !== id)
     setBookmarks(newBookmarks)
     localStorage.setItem('bookmarks', JSON.stringify(newBookmarks))
@@ -31,9 +44,9 @@ function Bookmark({editIndex, setEditIndex, setToggle, bookmarks, setBookmarks, 
       {editIndex === bookmark.id ? 
         (
           <>
-            <input type="text" value={bookmark.title} />
+            <input className='edit-input-box' type="text" value={title} onChange={(e) => {setTitle(e.target.value)}} />
               <div className='settings-bookmarks__icons'>
-                <IoIosSave />
+                <IoIosSave onClick={() => editBookmarkTitle(bookmark.id)} />
                 <IoIosCloseCircleOutline onClick={() => setEditIndex(null)} />
               </div>
           </>
@@ -43,7 +56,7 @@ function Bookmark({editIndex, setEditIndex, setToggle, bookmarks, setBookmarks, 
             <div className='settings-bookmarks__icons'>
               <IoIosAdd />
               <IoMdCreate onClick={() => setEditIndex(bookmark.id)} />
-              <IoIosTrash onClick={() => delteBookmark(bookmark.id)}/>
+              <IoIosTrash onClick={() => deleteBookmark(bookmark.id)}/>
             </div>
           </>
         )
