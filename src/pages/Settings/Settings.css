@@ -1,0 +1,25 @@
+.settings{
+    position: absolute;
+    background-color: #373E4D;
+    top: 50%;
+    left: 50%;
+    height: 100%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.settings-item{
+    padding: 1rem;
+    min-width: 600px;
+    border: 1px solid #22A4AC;
+}
+
+.settings-title{
+    font-size: 1.5rem;
+    color: #ddd;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #22A4AC;
+}

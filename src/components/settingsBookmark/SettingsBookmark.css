@@ -1,0 +1,45 @@
+.settings-bookmarks__item{
+    margin: 1rem 0;
+}
+
+.setting-bookmarks__item-div{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.setting-bookmarks__item-div:hover{
+    background: #485269;
+    transition: 0.2s ease-in all;
+}
+
+.settings-bookmarks__title{
+    color: #ddd;
+}
+
+.settings-bookmarks__lists{
+    margin: 1rem 0 1rem 2rem;
+}
+
+.add-bookmark-btn{
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    width: fit-content;
+    border: 1px solid #22A4AC;
+    text-align: center;
+    color: #22A4AC;
+    cursor: pointer;
+    left: 50%;
+}
+
+.settings-bookmarks__icons{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #ddd;
+}

@@ -1,0 +1,23 @@
+.main-body{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #373E4D;
+}
+
+.main-item{
+  display: flex;
+  gap: 2rem;
+}
+
+.box{
+  border: 2px solid #22A4AC;
+  padding: 1.5rem;
+}
+
+.categories{
+  display: flex;
+  margin-top: 3rem;
+  gap: 4rem;
+}
