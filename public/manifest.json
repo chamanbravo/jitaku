@@ -1,13 +1,13 @@
 {
   "short_name": "Jitaku",
   "name": "Jitaku",
-  "icons": [
-    {
-      "src": "logo.ico"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#22A4AC",
-  "background_color": "#373E4D"
+  "version": "1.0.0",
+  "manifest_version": 3,
+  "icons": {
+    "32": "/favicon-32x32.png"
+  },
+  "description": "🏠 a very minimal, powerful and fully customizable startpage made using react.",
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  }
 }

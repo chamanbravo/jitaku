@@ -1,30 +1,29 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Bookmark from './Bookmark/Bookmark'
 import BookmarkList from './BookmarkList/BookmarkList'
 import './SettingsBookmark.css'
 
-interface bookmarksList {
-    id: number,
+type bookmarksList = {
+    id: string,
     title: string,
     url: string
 }
 
-interface BookmarkType {
-  id: number,
+type BookmarkType = {
+  id: string,
   title: string,
   lists: bookmarksList[]
 }
 
-function SettingsBookmark() {
-  const [bookmarks, setBookmarks] = useState<BookmarkType[]>([])
-  const [toggle, setToggle] = useState<number | null>(null)
-  const [editIndex, setEditIndex] = useState<number | null>(null)
+type Props = {
+  bookmarks: BookmarkType[],
+  setBookmarks: (bookmarks: BookmarkType[]) => void
+  editIndex: string | null,
+  setEditIndex: (editIndex: string | null) => void
+}
 
-  
-  useEffect(() => {
-    const bookmark: BookmarkType[] = JSON.parse(localStorage.getItem('bookmarks') || '[]')
-    setBookmarks(bookmark)
-  },[])
+function SettingsBookmark({bookmarks, setBookmarks,editIndex, setEditIndex}: Props) {
+  const [toggle, setToggle] = useState<string | null>(null)
   
   return (
     <div className='settings-bookmarks__item'>

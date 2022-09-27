@@ -1,20 +1,21 @@
 import { useState } from 'react';
 import { IoMdCreate, IoIosTrash, IoIosAdd, IoIosSave, IoIosCloseCircleOutline} from "react-icons/io"
+import { v4 as uuidv4 } from 'uuid'
 
 type BookmarkType = {
-  id: number,
+  id: string,
   title: string,
   lists: {
-    id: number,
+    id: string,
     title: string,
     url: string
   }[]
 }
 
 type BookmarkProps = {
-  editIndex: number | null
-  setEditIndex: (id: number | null) => void
-  setToggle: (id: number | null) => void
+  editIndex: string | null
+  setEditIndex: (id: string | null) => void
+  setToggle: (id: string | null) => void
   setBookmarks: (bookmarks: BookmarkType[]) => void
   bookmarks: BookmarkType[]
   bookmark: BookmarkType
@@ -23,7 +24,7 @@ type BookmarkProps = {
 function Bookmark({editIndex, setEditIndex, setToggle, bookmarks, setBookmarks, bookmark}: BookmarkProps) {
   const [title, setTitle] = useState(bookmark.title)
 
-  const editBookmarkTitle = (id: number) => {
+  const editBookmarkTitle = (id: string) => {
     const newBookmarks = bookmarks.map(bookmark => {
       if (bookmark.id === id) bookmark.title = title
       return bookmark
@@ -33,10 +34,25 @@ function Bookmark({editIndex, setEditIndex, setToggle, bookmarks, setBookmarks, 
     setEditIndex(null)
   }
 
-  const deleteBookmark = (id: number) => {
+  const deleteBookmark = (id: string) => {
     const newBookmarks = bookmarks.filter(bookmark => bookmark.id !== id)
     setBookmarks(newBookmarks)
     localStorage.setItem('bookmarks', JSON.stringify(newBookmarks))
+  }
+
+  const addBookmarkItem = (id: string) => {
+    const BookmarkItemId: string = uuidv4()
+    const newBookmarks = bookmarks.map(bookmark => {
+      if (bookmark.id === id) {
+        bookmark.lists.push({id: BookmarkItemId, title: 'new', url: 'https://'})
+      }
+      return bookmark
+    })
+    setBookmarks(newBookmarks)
+    console.log(newBookmarks)
+    localStorage.setItem('bookmarks', JSON.stringify(newBookmarks))
+    setToggle(id)
+    setEditIndex(BookmarkItemId)
   }
 
   return (
@@ -54,7 +70,7 @@ function Bookmark({editIndex, setEditIndex, setToggle, bookmarks, setBookmarks, 
           <>
             <h3 className='settings-bookmarks__title' onClick={() => {setToggle(bookmark.id)}}>{'>'} {bookmark.title}</h3>
             <div className='settings-bookmarks__icons'>
-              <IoIosAdd />
+              <IoIosAdd onClick={() => addBookmarkItem(bookmark.id)} />
               <IoMdCreate onClick={() => setEditIndex(bookmark.id)} />
               <IoIosTrash onClick={() => deleteBookmark(bookmark.id)}/>
             </div>

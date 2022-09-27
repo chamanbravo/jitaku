@@ -4,13 +4,14 @@ import Categories from '../../components/categories/Categories'
 import bookmarksList from '../../mock/index'
 import './NewTab.css'
 
-function NewTab() {
-  const bookmarks: { title: string, lists: {title: string, url: string}[] }[] = JSON.parse(localStorage.getItem('bookmarks') || '[]')
-  if (bookmarks.length === 0) {
-    console.log('no bookmarks')    
+function NewTab() {   
+  let bookmarks: { title: string, lists: {title: string, url: string}[] }[] = []
+  if (localStorage.getItem('bookmarks') !== null){
+    bookmarks = JSON.parse(localStorage.getItem('bookmarks') || '[]')   
+  } else {
     localStorage.setItem('bookmarks', JSON.stringify(bookmarksList))
   }
-  
+
   return (
     <div className='main-body'>
       <div className="main-item">
@@ -28,7 +29,7 @@ function NewTab() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
 export default NewTab;

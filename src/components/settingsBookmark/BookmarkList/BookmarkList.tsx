@@ -3,20 +3,20 @@ import { IoMdCreate, IoIosTrash, IoIosSave, IoIosCloseCircleOutline} from "react
 import './BookmarkList.css'
 
 type BookmarkType = {
-  id: number,
+  id: string,
   title: string,
   lists: BookmarkLists[]
 }
 
 type BookmarkLists = {
-  id: number,
+  id: string,
   title: string,
   url: string
 }
 
 type BookmarkProps = {
-  editIndex: number | null
-  setEditIndex: (id: number | null) => void
+  editIndex: string | null
+  setEditIndex: (id: string | null) => void
   setBookmarks: (bookmarks: BookmarkType[]) => void
   bookmarks: BookmarkType[]
   list: BookmarkLists
@@ -28,7 +28,7 @@ function BookmarkList({editIndex, setEditIndex, bookmarks, setBookmarks, list}: 
     url: list.url
   })
 
-  const editBookmarkItem = (id: number) => {
+  const editBookmarkItem = (id: string) => {
     const newBookmark = bookmarks.map(bookmark => {
       bookmark.lists.map(list => {
         if (list.id === id) {
@@ -44,7 +44,7 @@ function BookmarkList({editIndex, setEditIndex, bookmarks, setBookmarks, list}: 
     setEditIndex(null)
   }
 
-  const delteBookmarkItem = (id: number) => {
+  const delteBookmarkItem = (id: string) => {
     const newBookmarks = bookmarks.map(bookmark => {
       bookmark.lists = bookmark.lists.filter(list => list.id !== id)
       return bookmark
